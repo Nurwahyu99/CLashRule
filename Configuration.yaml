@@ -1,0 +1,267 @@
+﻿---
+proxy-providers:
+  UmumAkun:
+    type: file
+    path: "./umumAkun.yaml" 
+    health-check:
+      enable: false
+      url: http://www.gstatic.com/generate_204
+      interval: 300  
+
+  StreamingAkun:
+    type: file
+    path: "./streamingAkun.yaml"
+    health-check:
+      enable: false
+      url: http://www.gstatic.com/generate_204
+      interval: 300  
+
+  GameAkun:
+    type: file
+    path: "./gameAkun.yaml"
+    health-check:
+      enable: false
+      url: http://www.gstatic.com/generate_204
+      interval: 300 
+
+proxy-groups:
+- name: Umum
+  type: select 
+  disable-udp: false
+  use:
+  - UmumAkun
+  url: http://www.gstatic.com/generate_204 
+  interval: '99'
+  tolerance: '99' 
+
+- name: Game
+  type: select
+  disable-udp: false
+  use:
+  - GameAkun
+  url: http://www.gstatic.com/generate_204
+  interval: '99'
+  tolerance: '99' 
+
+
+redir-port: 7892
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+mode: rule
+log-level: info
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: reyre
+bind-address: "*"
+external-ui: "/usr/share/openclash/dashboard"
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7874
+  nameserver:
+  - 8.8.8.8
+  - 8.8.4.4
+  fallback:
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.google/dns-query
+  - https://1.1.1.1/dns-query
+  - tls://8.8.8.8:853
+  fallback-filter:
+    geoip: false
+    ipcidr:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - 255.255.255.255/32
+ipv6: false 
+profile:
+  store-selected: true 
+
+rule-providers:  
+  Amazon:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Amazon.yaml" 
+
+  Apple:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Apple.yaml" 
+
+  Disney_Plus:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Disney_Plus.yaml" 
+
+  Facebook:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Facebook.yaml" 
+
+  Game:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/GameOnline.yaml" 
+
+  Google:
+    type: file
+    behavior: "domain"
+    path: "./ruleset/Google.yaml" 
+
+  Instagram: 
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Instagram.yaml" 
+
+  Joox:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Joox.yaml"   
+
+  LAN:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/LAN.yaml" 
+
+  Line:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Line.yaml" 
+
+  Microsoft: 
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Microsoft.yaml" 
+
+  Netflix:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Netflix.yaml" 
+
+  Paypal:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Paypal.yaml" 
+
+  Reject:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Reject.yaml" 
+
+  Speedtest:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Speedtest.yaml" 
+
+  Steam: 
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Steam.yaml"  
+
+  Spotify:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Spotify.yaml" 
+
+
+  Telegram:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Telegram.yaml" 
+
+  Tiktok:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Tiktok.yaml" 
+
+  TokoOnline:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/TokoOnline.yaml" 
+
+  Umum: 
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Umum.yaml" 
+
+  Whatsapp:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Whatsapp.yaml" 
+
+  Youtube:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Youtube.yaml"  
+
+  Zoom:
+    type: file
+    behavior: "classical"
+    path: "./ruleset/Zoom.yaml" 
+
+
+script:
+  shortcuts:
+    tcp443: network == 'tcp' and dst_port == 443 
+    tcp80: network == 'tcp' and dst_port == 80 
+    tcp8080: network == 'udp' and dst_port == 8080 
+    udp443: network == 'udp' and dst_port == 443 
+    udp80: network == 'udp' and dst_port == 80 
+    udp8080: network == 'udp' and dst_port == 8080
+
+rules:  
+- RULE-SET,Game,Game 
+- RULE-SET,LAN,DIRECT 
+- RULE-SET,Reject,REJECT 
+
+- RULE-SET,Whatsapp,Umum
+- RULE-SET,Facebook,Umum  
+- RULE-SET,Spotify,Umum 
+- RULE-SET,Line,Umum 
+- RULE-SET,Tiktok,Umum
+
+- RULE-SET,Google,Umum
+- RULE-SET,Umum,Umum 
+- RULE-SET,Paypal,Umum
+- RULE-SET,Telegram,Umum 
+- RULE-SET,Speedtest,Umum 
+- RULE-SET,Amazon,Umum 
+- RULE-SET,Apple,Umum 
+- RULE-SET,Microsoft,Umum
+- RULE-SET,Steam,Umum 
+- RULE-SET,TokoOnline,Umum 
+
+- RULE-SET,Youtube,Umum
+- RULE-SET,Zoom,Umum
+- RULE-SET,Netflix,Umum
+- RULE-SET,Disney_Plus,Umum
+- RULE-SET,Joox,Umum
+
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve 
+
+- SCRIPT,tcp443,Umum
+- SCRIPT,udp443,Umum 
+- SCRIPT,tcp80,Umum 
+- SCRIPT,tcp8080,Umum 
+- SCRIPT,udp80,Umum 
+- SCRIPT,udp8080,Umum 
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+  - tcp://8.8.8.8:53
+  - tcp://8.8.4.4:53
