@@ -1,0 +1,15 @@
+payload:  
+- DOMAIN-SUFFIX,shopee.co.id 
+- DOMAIN-SUFFIX,*.shopee.co.id 
+- DOMAIN-SUFFIX,*.shopee.com
+- DOMAIN-SUFFIX,*.shopeemobile.com 
+
+- DOMAIN-SUFFIX,.tokopedia.com 
+- DOMAIN-SUFFIX,.tokopedia.net  
+- DOMAIN-SUFFIX,.bukalapak.com 
+
+
+- DOMAIN-SUFFIX,.gojekapi.com 
+- DOMAIN-SUFFIX,.gojek.com 
+
+- DOMAIN-SUFFIX,.telkomsel.com
