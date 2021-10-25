@@ -1,0 +1,2 @@
+# CLashRule
+Rule Provider Clash
