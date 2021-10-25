@@ -1,0 +1,313 @@
+﻿---
+proxy-providers:
+  UmumAkun:
+    type: file
+    path: "./umumAkun.yaml" 
+    health-check:
+      enable: false
+      url: http://www.gstatic.com/generate_204
+      interval: 300  
+
+  StreamingAkun:
+    type: file
+    path: "./streamingAkun.yaml"
+    health-check:
+      enable: false
+      url: http://www.gstatic.com/generate_204
+      interval: 300  
+
+  GameAkun:
+    type: file
+    path: "./gameAkun.yaml"
+    health-check:
+      enable: false
+      url: http://www.gstatic.com/generate_204
+      interval: 300 
+
+proxy-groups:
+- name: Umum
+  type: select 
+  disable-udp: false
+  use:
+  - UmumAkun
+  url: http://www.gstatic.com/generate_204 
+  interval: '99'
+  tolerance: '99' 
+
+- name: Game
+  type: select
+  disable-udp: false
+  use:
+  - GameAkun
+  url: http://www.gstatic.com/generate_204
+  interval: '99'
+  tolerance: '99' 
+
+
+redir-port: 7892
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+mode: rule
+log-level: info
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: reyre
+bind-address: "*"
+external-ui: "/usr/share/openclash/dashboard"
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7874
+  nameserver:
+  - 8.8.8.8
+  - 8.8.4.4
+  fallback:
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.google/dns-query
+  - https://1.1.1.1/dns-query
+  - tls://8.8.8.8:853
+  fallback-filter:
+    geoip: false
+    ipcidr:
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - 255.255.255.255/32
+ipv6: false 
+profile:
+  store-selected: true 
+
+rule-providers: 
+  Amazon:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@main/Amazon.yaml'
+    path: "./ClashRule/Amazon.yaml"  
+    interval: 86400 
+
+  Apple: 
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Apple.yaml'
+    path: "./ClashRule/Apple.yaml"  
+    interval: 86400  
+
+  Disney Plus: 
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Apple.yaml'
+    path: "./ClashRule/Apple.yaml"  
+    interval: 86400  
+
+  Facebook:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Facebook.yaml'
+    path: "./ClashRule/Facebook.yaml"  
+    interval: 86400 
+
+  Game Online:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/GameOnline.yaml'
+    path: "./ClashRule/GameOnline.yaml"  
+    interval: 86400 
+
+  Google:
+    type: http
+    behavior: "domain" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Google.yaml'
+    path: "./ClashRule/Google.yaml"  
+    interval: 86400 
+
+  Instagram: 
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Instagram.yaml'
+    path: "./ClashRule/Instagram.yaml"  
+    interval: 86400 
+
+  Joox:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Joox.yaml'
+    path: "./ClashRule/Joox.yaml"  
+    interval: 86400 
+
+  LAN:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/LAN.yaml'
+    path: "./ClashRule/LAN.yaml"  
+    interval: 86400 
+
+  Line:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Line.yaml'
+    path: "./ClashRule/Line.yaml"  
+    interval: 86400 
+
+  Microsoft: 
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Microsoft.yaml'
+    path: "./ClashRule/Microsoft.yaml"  
+    interval: 86400 
+
+  Netflix:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Netflix.yaml'
+    path: "./ClashRule/Netflix.yaml"  
+    interval: 86400 
+
+  Paypal: 
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Paypal.yaml'
+    path: "./ClashRule/Paypal.yaml"  
+    interval: 86400 
+
+  Reject:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Reject.yaml'
+    path: "./ClashRule/Reject.yaml"  
+    interval: 86400 
+
+  Speedtest:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Speedtest.yaml'
+    path: "./ClashRule/Speedtest.yaml"  
+    interval: 86400 
+
+  Steam: 
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Steam.yaml'
+    path: "./ClashRule/Steam.yaml"  
+    interval: 86400 
+
+  Spotify:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Spotify.yaml'
+    path: "./ClashRule/Spotify.yaml"  
+    interval: 86400 
+
+  Telegram:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Telegram.yaml'
+    path: "./ClashRule/Telegram.yaml"  
+    interval: 86400 
+
+  Tiktok:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Tiktok.yaml'
+    path: "./ClashRule/Tiktok.yaml"  
+    interval: 86400 
+
+  TokoOnline:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/TokoOnline.yaml'
+    path: "./ClashRule/TokoOnline.yaml"  
+    interval: 86400 
+
+  Umum: 
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Umum.yaml'
+    path: "./ClashRule/Umum.yaml"  
+    interval: 86400 
+
+  Whatsapp:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Whatsapp.yaml'
+    path: "./ClashRule/Whatsapp.yaml"  
+    interval: 86400 
+
+  Youtube:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Youtube.yaml'
+    path: "./ClashRule/Youtube.yaml"  
+    interval: 86400 
+
+  Zoom:
+    type: http
+    behavior: "classical" 
+    url: 'https://cdn.jsdelivr.net/gh/Nurwahyu99/CLashRule@master/Zoom.yaml'
+    path: "./ClashRule/Zoom.yaml"  
+    interval: 86400 
+    
+script:
+  shortcuts:
+    tcp443: network == 'tcp' and dst_port == 443 
+    tcp80: network == 'tcp' and dst_port == 80 
+    tcp8080: network == 'udp' and dst_port == 8080 
+    udp443: network == 'udp' and dst_port == 443 
+    udp80: network == 'udp' and dst_port == 80 
+    udp8080: network == 'udp' and dst_port == 8080
+
+rules:  
+- RULE-SET,Game,Game 
+- RULE-SET,LAN,DIRECT 
+- RULE-SET,Reject,REJECT 
+
+- RULE-SET,Whatsapp,Umum
+- RULE-SET,Facebook,Umum  
+- RULE-SET,Spotify,Umum 
+- RULE-SET,Line,Umum 
+- RULE-SET,Tiktok,Umum
+
+- RULE-SET,Google,Umum
+- RULE-SET,Umum,Umum 
+- RULE-SET,Paypal,Umum
+- RULE-SET,Telegram,Umum 
+- RULE-SET,Speedtest,Umum 
+- RULE-SET,Amazon,Umum 
+- RULE-SET,Apple,Umum 
+- RULE-SET,Microsoft,Umum
+- RULE-SET,Steam,Umum 
+- RULE-SET,TokoOnline,Umum 
+
+- RULE-SET,Youtube,Umum
+- RULE-SET,Zoom,Umum
+- RULE-SET,Netflix,Umum
+- RULE-SET,Disney_Plus,Umum
+- RULE-SET,Joox,Umum
+
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve 
+
+- SCRIPT,tcp443,Umum
+- SCRIPT,udp443,Umum 
+- SCRIPT,tcp80,Umum 
+- SCRIPT,tcp8080,Umum 
+- SCRIPT,udp80,Umum 
+- SCRIPT,udp8080,Umum 
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+  - tcp://8.8.8.8:53
+  - tcp://8.8.4.4:53
