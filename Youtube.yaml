@@ -1,20 +1,4 @@
 payload: 
-  - DST-PORT,63188
-  - DST-PORT,49381
-  - DST-PORT,600613 
-  - DST-PORT,58774
-  - DST-PORT,59581
-  - DST-PORT,65432
-  - DST-PORT,63288 
-  - DST-PORT,53158
-  - DST-PORT,53526
-  - DST-PORT,49170 
-  - DST-PORT,54099
-  - DST-PORT,55897 
-  - DST-PORT,55834
-
-
-#YouTube
   - PROCESS-NAME,com.google.android.apps.youtube.music
   - PROCESS-NAME,com.google.android.youtube.tvmusic
   - PROCESS-NAME,com.google.android.youtube
@@ -237,5 +221,4 @@ payload:
   - IP-CIDR,104.237.167.0/24   
   - IP-CIDR,104.237.164.0/24   
   - IP-CIDR,104.237.162.0/24   
-  - IP-CIDR,104.237.160.0/19   
-  
+  - IP-CIDR,104.237.160.0/19  
