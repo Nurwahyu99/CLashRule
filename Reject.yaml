@@ -10,6 +10,3 @@ payload:
   - DOMAIN-SUFFIX,googletagmanager.com
   - DOMAIN-SUFFIX,googletagservices.com
   - DOMAIN-SUFFIX,google-analytics.com
-  - DOMAIN-SUFFIX,adservice
-  - DOMAIN-SUFFIX,analytics
-  - DOMAIN-SUFFIX,analysis
