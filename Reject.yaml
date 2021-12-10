@@ -1,4 +1,4 @@
-payload:  
+  payload:  
   - DOMAIN-SUFFIX,ad.com
   - DOMAIN-SUFFIX,analytics.google.com
   - DOMAIN-SUFFIX,analyticsinsights-pa.googleapis.com
