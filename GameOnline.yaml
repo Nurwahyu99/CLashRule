@@ -5,7 +5,7 @@ payload:
   - DST-PORT,4000 
   - DST-PORT,4500  
 
-  - DOMAIN-SUFFIX,clashofclan.com
+  - DOMAIN-SUFFIX,clashofclans.com
 
   # MOBILE LEGEND 
 
